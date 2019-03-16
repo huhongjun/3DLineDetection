@@ -111,12 +111,19 @@ void writeOutLines( string filePath, std::vector<std::vector<cv::Point3d> > &lin
 	fclose( fp2 );
 }
 
-
-void main() 
+/*
+*
+*	LineFromPointCloud D://Facade//data.txt D://Facade//data//
+*
+*/
+void main(int argc, char *argv[]) 
 {
-	string fileData = "D://Facade//data.txt";
-	string fileOut  = "D://Facade//data";
+	string fileData = (string)argv[1];
+	string fileOut = (string)argv[2];
 
+	cout <<"Input LAS text file: "<<fileData<<endl;
+	cout <<"Output directory: "<<fileOut<<endl;
+	
 	// read in data
 	PointCloud<double> pointData; 
 	readDataFromFile( fileData, pointData );
@@ -130,6 +137,8 @@ void main()
 	cout<<"lines number: "<<lines.size()<<endl;
 	cout<<"planes number: "<<planes.size()<<endl;
 	
-	writeOutPlanes( fileOut, planes, detector.scale );
-	writeOutLines( fileOut, lines, detector.scale );
+	string filePrefix = fileOut + fileData.substr(fileData.find_last_of('\\') + 1 , fileData.rfind(".")- 1 - fileData.find_last_of('\\')) + "_";
+
+	writeOutPlanes( filePrefix, planes, detector.scale );
+	writeOutLines( filePrefix, lines, detector.scale );
 }

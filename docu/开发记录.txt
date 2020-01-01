@@ -1,0 +1,20 @@
+
+系统编译
+=============
+
+说明: 之前在D盘基于cmake-3.11.0+VS 2017(vc15)+opencv3.4.3编译成功过,
+
+1 双击打开 cmake-3.11.0-win64-x64\bin\cmake-gui.exe
+2 config,generage visualstudio项目
+3 打开vs2010编译
+	调试配置
+		参数	L:\ws_3DLineDetection\Fcade\data.txt L:\ws_3DLineDetection\Fcade\data
+		环境	PATH=L:\ws_3DLineDetection\opencv-2.4.9\build\x64\vc10\bin;%PATH% $(LocalDebuggerEnvironment)
+
+
+
+运行程序需要将L:\ws_3DLineDetection\opencv-2.4.9\build\x64\vc10\bin添加到path
+
+opencv 3.4.3 对应vc14,vc15   => 看build下有对应子目录, VC11，VC14或VC15（分别为Visual Studio 2012，2015或2017编译器）
+
+这次L盘VS2010,需要低版本的opencv才支持vs2010
